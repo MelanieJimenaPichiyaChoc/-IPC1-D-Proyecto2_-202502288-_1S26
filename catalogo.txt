@@ -1,0 +1,7 @@
+J001|FIFA 24|Deportes|350.0|PlayStation|10|Juego de futbol competitivo
+J002|Call of Duty|Acción|450.0|PC|6|Juego de disparos en primera persona
+J003|Minecraft|Aventura|200.0|PC|15|Juego de construccion y exploracion
+J004|Resident Evil 4|Terror|375.0|PlayStation|8|Juego de terror y supervivencia
+J005|Zelda TOTK|Aventura|500.0|Nintendo Switch|5|Aventura de mundo abierto
+J006|Age of Empires IV|Estrategia|280.0|PC|9|Juego de estrategia en tiempo real
+J007|Elden Ring|RPG|420.0|Xbox|7|Juego de rol y fantasia oscura
