@@ -88,4 +88,8 @@ public class ListaSimple {
         }
         return frente.dato; 
     }
+    
+    public NodoSimple getFrente(){
+        return frente; 
+    }
 }

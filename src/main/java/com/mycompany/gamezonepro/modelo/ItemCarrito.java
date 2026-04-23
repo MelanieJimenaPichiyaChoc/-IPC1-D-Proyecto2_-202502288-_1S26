@@ -9,30 +9,30 @@ package com.mycompany.gamezonepro.modelo;
  */
 public class ItemCarrito {
     
-    private Juego juego; 
-    private int cantidad;  
-    
-    public ItemCarrito(Juego jeugo, int cantidad){
-        this.juego = juego; 
-        this.cantidad = cantidad; 
+    private Juego juego;
+    private int cantidad;
+
+    public ItemCarrito(Juego juego, int cantidad) {
+        this.juego = juego;
+        this.cantidad = cantidad;
     }
-    
-    public double getSubtotal(){
-        return juego.getPrecio() * cantidad; 
+
+    public double getSubtotal() {
+        return juego.getPrecio() * cantidad;
     }
-    
-    public void setCatnidad(int n){
-        if(n > 0){
-            cantidad = n; 
+
+    public void setCantidad(int n) {
+        if (n > 0) {
+            this.cantidad = n;
         }
     }
-    
-    public Juego getJuego(){
-        return juego; 
+
+    public Juego getJuego() {
+        return juego;
     }
-    
-    public int getCantidad(){
-        return cantidad; 
+
+    public int getCantidad() {
+        return cantidad;
     }
     
 }

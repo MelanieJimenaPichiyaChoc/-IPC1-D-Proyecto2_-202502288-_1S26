@@ -27,6 +27,10 @@ public class Juego {
         this.descripcion = descripcion; 
     }
     
+    public String getNombre(){
+        return nombre; 
+    }
+    
     public String getCodigo(){
         return codigo; 
     }

@@ -5,3 +5,4 @@ J004|Resident Evil 4|Terror|375.0|PlayStation|8|Juego de terror y supervivencia
 J005|Zelda TOTK|Aventura|500.0|Nintendo Switch|5|Aventura de mundo abierto
 J006|Age of Empires IV|Estrategia|280.0|PC|9|Juego de estrategia en tiempo real
 J007|Elden Ring|RPG|420.0|Xbox|7|Juego de rol y fantasia oscura
+J008|Forza Horizon 5|Deportes|390.0|Xbox|4|Juego de carreras de mundo abierto

@@ -6,17 +6,19 @@ package com.mycompany.gamezonepro.modelo;
 
 import com.mycompany.gamezonepro.estructuras.ListaSimple;
 
-/**
- * @author Jimena
- */
 public class Compra {
-    
-    private String id; 
-    private String fecha; 
+
+    private String id;
+    private String fecha;
     private ListaSimple items;
-    private double total; 
-    
-    
+    private double total;
+
+    public Compra() {
+        this.id = "";
+        this.fecha = "";
+        this.items = new ListaSimple();
+        this.total = 0;
+    }
 
     public Compra(String id, String fecha) {
         this.id = id;
@@ -63,7 +65,8 @@ public class Compra {
             }
         }
 
-        resumen += "Total: Q" + total;
+        resumen += "Total: Q" + total + "\n";
+        resumen += "-------------------------\n";
 
         return resumen;
     }
@@ -77,7 +80,24 @@ public class Compra {
         if (primero != null) {
             lista.eliminar(primero);
         }
+
         return primero;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setItems(ListaSimple items) {
+        this.items = items;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getId() {
@@ -91,5 +111,4 @@ public class Compra {
     public ListaSimple getItems() {
         return items;
     }
-    
 }

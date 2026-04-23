@@ -28,7 +28,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -84,17 +83,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(53, 144, 235));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/imagenes/videojuego.png"))); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("OCR A Extended", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("GameZone Pro");
 
         jPanel3.setBackground(new java.awt.Color(97, 171, 246));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/avatar (1).png"))); // NOI18N
 
         lblJugador.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
         lblJugador.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +134,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPosicion)
                             .addComponent(lblXP))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -202,9 +195,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(102, 102, 102)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,12 +206,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel2))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -228,8 +218,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(51, 153, 255));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/bienes.png"))); // NOI18N
 
         btnTienda.setBackground(new java.awt.Color(255, 255, 255));
         btnTienda.setFont(new java.awt.Font("OCR A Extended", 1, 16)); // NOI18N
@@ -303,8 +291,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/jugando-a-las-cartas.png"))); // NOI18N
-
         btnAlbum.setBackground(new java.awt.Color(255, 255, 255));
         btnAlbum.setFont(new java.awt.Font("OCR A Extended", 1, 16)); // NOI18N
         btnAlbum.setForeground(new java.awt.Color(0, 0, 0));
@@ -376,8 +362,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(255, 102, 51));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/copa-de-oro.png"))); // NOI18N
 
         btnEventos.setBackground(new java.awt.Color(255, 255, 255));
         btnEventos.setFont(new java.awt.Font("OCR A Extended", 1, 16)); // NOI18N
@@ -451,8 +435,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/estrella.png"))); // NOI18N
-
         btnGamificacion.setBackground(new java.awt.Color(255, 255, 255));
         btnGamificacion.setFont(new java.awt.Font("OCR A Extended", 1, 16)); // NOI18N
         btnGamificacion.setForeground(new java.awt.Color(0, 0, 0));
@@ -523,8 +505,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(153, 51, 0));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/analitica.png"))); // NOI18N
 
         btnReportes.setBackground(new java.awt.Color(255, 255, 255));
         btnReportes.setFont(new java.awt.Font("OCR A Extended", 1, 16)); // NOI18N
@@ -597,8 +577,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel15.setBackground(new java.awt.Color(51, 153, 255));
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/gamezonepro/usuario.png"))); // NOI18N
 
         btnEstudiantes.setBackground(new java.awt.Color(255, 255, 255));
         btnEstudiantes.setFont(new java.awt.Font("OCR A Extended", 1, 15)); // NOI18N
@@ -815,7 +793,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGamificacion;
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnTienda;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
