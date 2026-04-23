@@ -1,9 +1,0 @@
-Compra: CMP-1776919675165
-Fecha: 2026-04-22T22:47:55.176148100
-Items:
-- Minecraft | Cantidad: 1 | Subtotal: Q200.0
-- Call of Duty | Cantidad: 1 | Subtotal: Q450.0
-- FIFA 24 | Cantidad: 3 | Subtotal: Q1050.0
-Total: Q1700.0
--------------------------
-

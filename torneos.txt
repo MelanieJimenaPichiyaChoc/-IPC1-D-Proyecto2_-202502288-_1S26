@@ -1,0 +1,4 @@
+T001|GT Championship 2025|Cyber Strike Pro|15 Abril 2025|18:00|50.0|42
+T002|Street Fighters Cup|Dragon Quest PvP|22 Abril 2025|15:00|55.0|75
+T003|Mind Wars Open|Mind Wars Estrategia|30 Abril 2025|10:00|25.0|120
+T004|Galaxy Drift League|Galaxy Drift|5 Abril 2025|20:00|40.0|0

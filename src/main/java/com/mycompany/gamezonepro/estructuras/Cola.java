@@ -64,4 +64,8 @@ public class Cola {
     public int getTamanio() {
         return tamanio;
     }
+    
+    public NodoCola getFrente(){
+        return frente;
+    }
 }
