@@ -1,0 +1,10 @@
+C01|Dracora|Fuego|Rara|85|60|90|
+C02|Aquator|Agua|Común|40|55|70|
+C03|Voltora|Eléctrico|Ultra Rara|90|65|100|
+C04|Bulbaza|Planta|Común|35|50|75|
+C05|Magmora|Fuego|Rara|80|40|85|
+C06|Tibers|Agua|Común|45|70|95|
+C07|Forestin|Planta|Común|30|60|80|
+C09|Vortex|Psíquico|Rara|88|50|72|
+C10|Fawrian|Animal|Común|55|55|55|
+C12|Mariplex|Psíquico|Rara|60|48|78|

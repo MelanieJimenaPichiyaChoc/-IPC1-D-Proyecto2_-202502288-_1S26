@@ -149,7 +149,7 @@ public class MallaOrtogonal {
         return arreglo;
     }
 
-    private NodoMatriz getNodo(int fila, int col) {
+    public NodoMatriz getNodo(int fila, int col) {
         NodoMatriz actual = origen;
 
         for (int i = 0; i < fila && actual != null; i++) {
@@ -161,6 +161,13 @@ public class MallaOrtogonal {
         }
 
         return actual;
+    }
+    
+    public void quitar(int fila, int col) {
+        NodoMatriz nodo = getNodo(fila, col);
+        if (nodo != null) {
+            nodo.dato = null;
+        }
     }
 
     public int getFilas() {

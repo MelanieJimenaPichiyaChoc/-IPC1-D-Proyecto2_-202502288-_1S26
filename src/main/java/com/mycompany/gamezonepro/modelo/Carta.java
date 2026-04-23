@@ -13,18 +13,31 @@ public class Carta {
     private String nombre; 
     private String tipo; 
     private String rareza; 
+    private String imagen; 
     private int ataque; 
     private int defensa; 
     private int ps; 
     
-    public Carta(String codigo, String nombre, String tipo, String rareza, int ataque, int defensa, int ps){
-        this.codigo = codigo; 
-        this.nombre = nombre; 
-        this.tipo = tipo; 
-        this.rareza = rareza; 
-        this.ataque = ataque; 
-        this.defensa = defensa; 
-        this.ps = ps; 
+    public Carta(String codigo, String nombre, String tipo, String rareza, int ataque, int defensa, int ps) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.rareza = rareza;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.ps = ps;
+        this.imagen = "";
+    }
+
+    public Carta(String codigo, String nombre, String tipo, String rareza, int ataque, int defensa, int ps, String imagen) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.rareza = rareza;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.ps = ps;
+        this.imagen = imagen;
     }
     
     public String getCodigo(){
@@ -81,6 +94,14 @@ public class Carta {
     
     public void setPs(int ps){
         this.ps = ps; 
+    }
+    
+    public String getImagen() {
+        return imagen;
+    }
+    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
 }
