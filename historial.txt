@@ -1,0 +1,7 @@
+Compra: CMP-1776988046260
+Fecha: 2026-04-23T17:47:26.260489600
+Items:
+- Call of Duty | Cantidad: 1 | Subtotal: Q450.0
+Total: Q450.0
+-------------------------
+
