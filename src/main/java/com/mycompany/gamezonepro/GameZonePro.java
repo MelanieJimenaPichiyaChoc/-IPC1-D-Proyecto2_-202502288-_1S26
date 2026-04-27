@@ -4,7 +4,9 @@
 
 package com.mycompany.gamezonepro;
 
-import com.mycompany.gamezonepro.gui.MenuPrincipal;
+import com.mycompany.gamezonepro.gui.Login;
+
+
 
 /**
  *
@@ -14,7 +16,7 @@ public class GameZonePro {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

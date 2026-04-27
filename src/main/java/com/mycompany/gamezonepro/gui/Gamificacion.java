@@ -3,11 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.gamezonepro.gui;
+import com.mycompany.gamezonepro.logica.Sesion;
 import com.mycompany.gamezonepro.modelo.Usuario;
+import com.mycompany.gamezonepro.estructuras.ListaSimple;
+import com.mycompany.gamezonepro.estructuras.NodoSimple;
+import com.mycompany.gamezonepro.logica.GestorUsuarios;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -18,23 +24,47 @@ public class Gamificacion extends javax.swing.JFrame {
 
     private Usuario usuarioActual; 
     private int logrosDesbloqueados; 
-    
+
     public Gamificacion() {
         initComponents();
 
-        usuarioActual = new Usuario("Jimena", "202502288");
-        usuarioActual.otorgarXP(8420);
+        usuarioActual = Sesion.usuarioActual;
 
-        configurarUsuario();
-        mostrarLogros();
-        mostrarLeaderboard();
+        if (usuarioActual == null) {
+            JOptionPane.showMessageDialog(this, "No hay usuario activo");
+            new Login().setVisible(true);
+            this.dispose();
+            return;
+        }
+
+        aplicarRecompensasDeLogros();
+        aplicarRecompensasDeNivel();
+        actualizarPantalla();
+    }
+    
+    private void aplicarRecompensasDeNivel() {
+        int xp = usuarioActual.getXP();
+
+        if (usuarioActual.getNivel() >= 2 && xp < 1000) {
+            usuarioActual.otorgarXP(500);
+        }
+
+        if (xp >= 1500 && xp < 3100) {
+            usuarioActual.otorgarXP(1500);
+        }
+
+        if (usuarioActual.getNivel() >= 5 && xp < 14000) {
+            usuarioActual.otorgarXP(7000);
+        }
+
+        GestorUsuarios.guardarXPUsuario(usuarioActual);
     }
 
     private void configurarUsuario() {
         labelJugador.setText(usuarioActual.getNombre());
         labelXP.setText(usuarioActual.getXP() + " XP");
         lblXPPB.setText(usuarioActual.getXP() + "/10000 XP");
-        lblNivel.setText("Niv. - " + usuarioActual.getNivel());
+        lblNivel.setText("Nivel " + usuarioActual.getNivel() + " - " + usuarioActual.getRango());
 
         progressNivel.setMinimum(0);
         progressNivel.setMaximum(10000);
@@ -46,23 +76,24 @@ public class Gamificacion extends javax.swing.JFrame {
         panelLogros.setLayout(new GridLayout(0, 1, 8, 8));
 
         logrosDesbloqueados = 0;
+        int xp = usuarioActual.getXP();
 
-        agregarLogro("Primera Compra", "Realiza tu primera compra", 50, true);
-        agregarLogro("Coleccionista Novato", "Agrega 10 cartas al álbum", 100, true);
-        agregarLogro("Taquillero", "Compra tickets para torneos", 150, true);
-        agregarLogro("Alta Rareza", "Obtén una carta Legendaria", 200, true);
-        agregarLogro("Somos Dedicados", "Acumula 1,000 XP", 50, true);
-        agregarLogro("Leyenda Viviente", "Alcanza el nivel 5", 100, true);
-        agregarLogro("Coleccionista Experto", "Completa una fila del álbum", 300, false);
-        agregarLogro("Gran Gastador", "Gasta más de Q2,000", 250, false);
+        agregarLogro("Primer Inicio", "Iniciar sesión por primera vez", 10, xp >= 10);
+        agregarLogro("Primera Compra", "Realizar una compra en la tienda", 50, xp >= 60);
+        agregarLogro("Participante", "Comprar ticket para torneo", 150, xp >= 210);
+        agregarLogro("Coleccionista", "Agregar cartas al álbum", 100, xp >= 310);
+        agregarLogro("Carta Legendaria", "Agregar una carta legendaria", 200, xp >= 510);
+        agregarLogro("Jugador Nivel 2", "Alcanzar nivel 2", 500, usuarioActual.getNivel() >= 2);
+        agregarLogro("Veterano", "Alcanzar 1500 XP", 1500, xp >= 1500);
+        agregarLogro("Leyenda", "Alcanzar nivel 5", 7000, usuarioActual.getNivel() >= 5);
 
         lblResumenLogros.setText("Logros: " + logrosDesbloqueados + "/8 desbloqueados");
 
         panelLogros.revalidate();
         panelLogros.repaint();
     }
-    
-    private void agregarLogro(String nombre, String descripcion, int xp, boolean desbloqueado) {
+
+    private void agregarLogro(String nombre, String descripcion, int xpPremio, boolean desbloqueado) {
         JPanel card = new JPanel(new GridLayout(2, 1));
         card.setBorder(BorderFactory.createLineBorder(new Color(180, 220, 180), 2));
 
@@ -73,7 +104,7 @@ public class Gamificacion extends javax.swing.JFrame {
             card.setBackground(new Color(235, 235, 235));
         }
 
-        JLabel lbl1 = new JLabel((desbloqueado ? "✓ " : "🔒 ") + nombre + "   +" + xp + " XP");
+        JLabel lbl1 = new JLabel((desbloqueado ? "✓ " : "🔒 ") + nombre + "   recompensa: +" + xpPremio + " XP");
         JLabel lbl2 = new JLabel(descripcion);
 
         card.add(lbl1);
@@ -82,33 +113,85 @@ public class Gamificacion extends javax.swing.JFrame {
         panelLogros.add(card);
     }
     
-    private void mostrarLeaderboard() {
+   private void mostrarLeaderboard() {
         panelLeaderboard.removeAll();
         panelLeaderboard.setLayout(new GridLayout(0, 1, 4, 4));
 
-        String[] nombres = {
-            "Sara Ruiz", "Ana López", "Mario Ríos", "Luisa Pérez",
-            "Roberto C.", "Jimena", "Carla Vega", "Diego M.",
-            "Valeria F.", "Pablo N."
-        };
+        ListaSimple usuarios = cargarUsuariosLeaderboard();
+        ordenarUsuariosPorXP(usuarios);
 
-        int[] xp = {11200, 9810, 9420, 9100, 8760, usuarioActual.getXP(), 7910, 7640, 6820, 5900};
+        NodoSimple aux = usuarios.getFrente();
+        int posicion = 1;
 
-        ordenarPorXP(nombres, xp);
+        while (aux != null) {
+            Usuario u = (Usuario) aux.dato;
 
-        for (int i = 0; i < nombres.length; i++) {
-            JLabel fila = new JLabel((i + 1) + ". " + nombres[i] + " - " + xp[i] + " XP");
+            JLabel fila = new JLabel(posicion + ". " + u.getNombre() + " - " + u.getXP() + " XP");
 
-            if (nombres[i].equals("Jimena")) {
+            if (usuarioActual != null && u.getCarne().equals(usuarioActual.getCarne())) {
                 fila.setOpaque(true);
                 fila.setBackground(new Color(200, 255, 200));
             }
 
             panelLeaderboard.add(fila);
+
+            aux = aux.siguiente;
+            posicion++;
         }
 
         panelLeaderboard.revalidate();
         panelLeaderboard.repaint();
+    }
+   
+    private ListaSimple cargarUsuariosLeaderboard() {
+        ListaSimple usuarios = new ListaSimple();
+
+        try {
+            java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("usuarios.txt"));
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split("\\|");
+
+                if (partes.length == 4) {
+                    Usuario u = new Usuario(partes[0], partes[1], partes[2]);
+                    u.setXP(Integer.parseInt(partes[3]));
+                    usuarios.insertar(u);
+                }
+            }
+
+            br.close();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo cargar leaderboard.");
+        }
+
+        return usuarios;
+    }
+    
+  
+    
+    private void ordenarUsuariosPorXP(ListaSimple usuarios) {
+        boolean cambio = true;
+
+        while (cambio) {
+            cambio = false;
+            NodoSimple actual = usuarios.getFrente();
+
+            while (actual != null && actual.siguiente != null) {
+                Usuario u1 = (Usuario) actual.dato;
+                Usuario u2 = (Usuario) actual.siguiente.dato;
+
+                if (u1.getXP() < u2.getXP()) {
+                    Object temp = actual.dato;
+                    actual.dato = actual.siguiente.dato;
+                    actual.siguiente.dato = temp;
+                    cambio = true;
+                }
+
+                actual = actual.siguiente;
+            }
+        }
     }
     
     private void ordenarPorXP(String[] nombres, int[] xp) {
@@ -127,6 +210,28 @@ public class Gamificacion extends javax.swing.JFrame {
             nombres[j + 1] = nombreActual;
         }
     }
+    
+    private void actualizarPantalla() {
+        usuarioActual = Sesion.usuarioActual;
+
+        if (usuarioActual == null) {
+            return;
+        }
+
+        configurarUsuario();
+        mostrarLogros();
+        mostrarLeaderboard();
+    }
+    
+    private void aplicarRecompensasDeLogros() {
+    int xp = usuarioActual.getXP();
+
+    if (usuarioActual.getNivel() >= 2 && xp < 1000) {
+        usuarioActual.otorgarXP(500);
+        GestorUsuarios.guardarXPUsuario(usuarioActual);
+    }
+}
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

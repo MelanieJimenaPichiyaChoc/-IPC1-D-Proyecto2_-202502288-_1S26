@@ -9,8 +9,13 @@ import com.mycompany.gamezonepro.estructuras.ListaSimple;
 import com.mycompany.gamezonepro.estructuras.NodoCola;
 import com.mycompany.gamezonepro.estructuras.NodoSimple;
 import com.mycompany.gamezonepro.hilos.Taquilla;
+import com.mycompany.gamezonepro.logica.Sesion;
 import com.mycompany.gamezonepro.modelo.Participante;
 import com.mycompany.gamezonepro.modelo.Torneo;
+import com.mycompany.gamezonepro.modelo.Usuario;
+import com.mycompany.gamezonepro.logica.Sesion;
+import com.mycompany.gamezonepro.logica.GestorUsuarios;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.BufferedReader;
@@ -39,6 +44,8 @@ public class EventosEspeciales extends javax.swing.JFrame {
     private int vendidosT1 = 0; 
     private int vendidosT2 = 0; 
     private double totalIngresos = 0; 
+    
+    private Usuario usuarioActual; 
 
    
     public EventosEspeciales() {
@@ -65,7 +72,8 @@ public class EventosEspeciales extends javax.swing.JFrame {
 
         cargarTorneos();
         mostrarTorneos();
-        //cargarTicketsVendidos();
+        usuarioActual = Sesion.usuarioActual; 
+        
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -247,6 +255,14 @@ public class EventosEspeciales extends javax.swing.JFrame {
             totalIngresos += torneo.getPrecioTicket();
 
             ticketsVendidos.insertar(participante);
+            
+            GestorUsuarios.sumarXPPorNombre(participante.getNombre(), 150);
+
+            if (Sesion.usuarioActual != null 
+                    && participante.getNombre().equalsIgnoreCase(Sesion.usuarioActual.getNombre())) {
+                Sesion.usuarioActual.otorgarXP(150);
+                GestorUsuarios.guardarXPUsuario(Sesion.usuarioActual);
+            }
 
             actualizarResumen();
             actualizarResumenSesion();

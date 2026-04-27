@@ -8,3 +8,6 @@ C07|Forestin|Planta|Común|30|60|80|
 C09|Vortex|Psíquico|Rara|88|50|72|
 C10|Fawrian|Animal|Común|55|55|55|
 C12|Mariplex|Psíquico|Rara|60|48|78|
+1|Gggg|Legendaria|Ultra rara|65|50|50|
+582|Fssf|Agua|Legendaria|100|80|60|
+Fenix|Fenix|Fuego|Ultra Rara|4000|50|50|

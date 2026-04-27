@@ -8,8 +8,10 @@ import com.mycompany.gamezonepro.modelo.Juego;
 import com.mycompany.gamezonepro.estructuras.ListaSimple;
 import com.mycompany.gamezonepro.modelo.Usuario;
 import com.mycompany.gamezonepro.estructuras.NodoSimple;
+import com.mycompany.gamezonepro.logica.Sesion;
 import com.mycompany.gamezonepro.modelo.ItemCarrito;
 import com.mycompany.gamezonepro.modelo.Compra;
+import com.mycompany.gamezonepro.logica.GestorUsuarios;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
@@ -43,9 +45,10 @@ public class Tienda extends javax.swing.JFrame {
     public Tienda() {
         initComponents();
 
-        usuarioActual = new Usuario("Jimena", "202502288");
+        usuarioActual = Sesion.usuarioActual;
         juegoSeleccionado = null;
-
+        usuarioActual.otorgarXP(50);
+        GestorUsuarios.guardarXPUsuario(usuarioActual);
         mostrarUsuario();
 
         cmbGenero.removeAllItems();
@@ -520,6 +523,33 @@ public class Tienda extends javax.swing.JFrame {
         panelCatalogo.repaint();
     }
     
+    private void guardarCatalogo() {
+        try {
+            java.io.FileWriter fw = new java.io.FileWriter("catalogo.txt");
+
+            NodoSimple aux = listaJuegos.getFrente();
+
+            while (aux != null) {
+                Juego j = (Juego) aux.dato;
+
+                fw.write(j.getCodigo() + "|"
+                        + j.getNombre() + "|"
+                        + j.getGenero() + "|"
+                        + j.getPrecio() + "|"
+                        + j.getPlataforma() + "|"
+                        + j.getStock() + "|"
+                        + j.getDescripcion() + "\n");
+
+                aux = aux.siguiente;
+            }
+
+            fw.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar catálogo: " + e.getMessage());
+        }
+    }
+    
     private void guardarHistorial() {
         try {
             java.io.FileWriter fw = new java.io.FileWriter("historial.txt");
@@ -607,9 +637,12 @@ public class Tienda extends javax.swing.JFrame {
     }
     
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        new MenuPrincipal().setVisible(true);
+        guardarCatalogo();
+        guardarHistorial();
+
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
         this.dispose();
-        guardarHistorial(); 
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -656,6 +689,7 @@ public class Tienda extends javax.swing.JFrame {
         mostrarCarrito();
         mostrarCatalogo(listaJuegos);
         mostrarHistorial();
+        guardarCatalogo();
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed

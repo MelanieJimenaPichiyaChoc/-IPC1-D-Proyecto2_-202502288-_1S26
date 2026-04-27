@@ -4,10 +4,13 @@
  */
 package com.mycompany.gamezonepro.logica;
 
+import com.mycompany.gamezonepro.modelo.Usuario;
+
 /**
- *
- * @author pichi
+ * @author Jimena
  */
 public class Sesion {
+    
+    public static Usuario usuarioActual;
     
 }
